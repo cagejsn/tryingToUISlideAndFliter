@@ -16,32 +16,13 @@ class MyView: GLKView {
     var startingImage: CIImage!
     var finishingImage: CIImage!
     
-    
-    
-    
     override init(frame: CGRect,context: EAGLContext){
         super.init(frame: frame, context: context)
         EAGLContext.setCurrent(context)
-        
-        drawableColorFormat = .RGB565
-     //   drawableDepthFormat = .format24
-       drawableStencilFormat = .format8
-     //   self.enableSetNeedsDisplay = true
-       
-  
         ciContext = CIContext(eaglContext: context)
         var uiImage = UIImage(named: "somePic")
         startingImage = CIImage(cgImage: (uiImage?.cgImage)!)
-        
-      // bindDrawable()
-      //  self.bounds = CGRect.zero
         self.bounds = CGRect(origin: CGPoint.zero, size: (uiImage?.size)!)
-        
-        print(self.bounds)
-        print(self.frame)
-        //self.bounds.size.width = (uiImage?.size.width)!
-       // self.bounds.size.height = (uiImage?.size.height)!    
-      //  self.setNeedsDisplay()
         self.display()
     }
     
@@ -61,17 +42,10 @@ class MyView: GLKView {
     }
     
     func setImage(for sliderValue: Float){
-        
         var filter = CIFilter(name: "CIExposureAdjust")
         filter?.setValue(startingImage, forKey: kCIInputImageKey)
         filter?.setValue(NSNumber(value: sliderValue), forKey: "inputEV")
-       // finishingImage.
-        
-        
-        ciContext.filte
         finishingImage = filter?.outputImage
-        filter.
-        
         self.display()
     }
     
